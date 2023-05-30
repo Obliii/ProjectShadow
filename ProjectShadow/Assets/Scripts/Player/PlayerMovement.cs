@@ -17,5 +17,10 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(movement);
 
         movement = PlayerAction.actions["Movement"].ReadValue<Vector2>() * moveSpeed * Time.deltaTime;
+
+        //if(PlayerAction.actions["Button1"].IsPressed())
+        //{
+        //    Debug.Log("Button Pressed!");
+        //}
     }
 }
