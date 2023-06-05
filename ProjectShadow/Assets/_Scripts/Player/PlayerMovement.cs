@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    const float WALKSPEED = 4f;
+    const float RUNSPEED = 7f;
 
     public enum AnimationType
     {
@@ -15,11 +17,14 @@ public class PlayerMovement : MonoBehaviour
         ANIM_Running,
     };
 
+    Stats stats = null;
+    Entity entity = null;
+
     [SerializeField] private SpriteRenderer spriterenderer;
     [SerializeField] private Animator controller;
     [SerializeField] private PlayerInput PlayerAction;
     
-    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float moveSpeed = WALKSPEED;
 
     [SerializeField] private Vector2 playerinput; // For the purposes of getting what buttons the player pressed for flipping the player.
     private Vector2 move;
@@ -28,8 +33,16 @@ public class PlayerMovement : MonoBehaviour
     public AnimationType animationtype;
 
 
+    private void Start()
+    {
+        stats = new Stats();
+        entity = new Entity();
+    }
+
     private void Update()
     {
+        ManageSpeed();
+
         Movement();
         UpdateAnimation();
 
@@ -47,9 +60,13 @@ public class PlayerMovement : MonoBehaviour
     
     private void UpdateAnimation()
     {
-        if(playerinput == Vector2.zero)
+        if(!CharacterIsMoving())
         {
             animationtype = AnimationType.ANIM_Idle;
+        }
+        else if(CharacterIsMoving() && RunButtonHeld())
+        {
+            animationtype = AnimationType.ANIM_Running;
         }
 
         else
@@ -67,8 +84,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipPlayer(Vector2 flip)
     {
-        Debug.Log(flip.x);
-
         if(flip.x >= 0.01)
         {
             spriterenderer.flipX = false;
@@ -79,6 +94,36 @@ public class PlayerMovement : MonoBehaviour
             spriterenderer.flipX = true;
         }
         
+    }
+
+    private void ManageSpeed()
+    {
+        moveSpeed = WALKSPEED;
+
+        if(RunButtonHeld())
+        {
+            moveSpeed = RUNSPEED;
+        }
+    }
+
+    private bool CharacterIsMoving()
+    {
+        if(playerinput != Vector2.zero)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool RunButtonHeld()
+    {
+        if(PlayerAction.actions["Button1"].IsInProgress())
+        {
+            return true;
+        }
+
+        return false;
     }
 
 
