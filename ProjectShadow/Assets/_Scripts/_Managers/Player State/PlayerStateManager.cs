@@ -8,6 +8,18 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerOverworldState overworldState = new PlayerOverworldState();
     public PlayerBattleState battleState = new PlayerBattleState();
 
+    //private void OnEnable()
+    //{
+    //    EventManager.ChangeOverworldState += ChangeOverworldState;
+    //    EventManager.ChangeBattleState += ChangeBattleState;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    EventManager.ChangeOverworldState -= ChangeOverworldState;
+    //    EventManager.ChangeBattleState -= ChangeBattleState;
+    //}
+
     void Start()
     {
         //Sets Starting State. Starts state when state change occures.
@@ -26,4 +38,16 @@ public class PlayerStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
+
+    //public void ChangeBattleState()
+    //{
+    //    currentState = battleState;
+    //    currentState.EnterState(this);
+    //}
+
+    //public void ChangeOverworldState()
+    //{
+    //    currentState = overworldState;
+    //    currentState.EnterState(this);
+    //}
 }
