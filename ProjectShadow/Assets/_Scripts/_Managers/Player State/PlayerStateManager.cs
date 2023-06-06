@@ -20,6 +20,14 @@ public class PlayerStateManager : MonoBehaviour
     //    EventManager.ChangeBattleState -= ChangeBattleState;
     //}
 
+    /// <summary>
+    ///  Could also have this run with events,
+    ///  The UpdateState function could launch an event
+    ///  that would tell all others scripts that rely on it to update.
+    ///  Could use a "OnStateUpdate" in my own scripts that wait for it.
+    ///  Instead of having to goto this script and check to see what state we're on.
+    /// </summary>
+
     void Start()
     {
         //Sets Starting State. Starts state when state change occures.
@@ -37,6 +45,10 @@ public class PlayerStateManager : MonoBehaviour
         //Changes state when called.
         currentState = state;
         state.EnterState(this);
+    }
+
+    public PlayerBaseState GetCurrentState() {
+        return currentState;
     }
 
     //public void ChangeBattleState()
