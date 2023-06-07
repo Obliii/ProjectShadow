@@ -27,66 +27,68 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer spriterenderer;
     public Animator controller;
 
+    private bool PlayerRunning;
+
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
         KeyboardInputController.OnMovement += OnMovement;
+        KeyboardInputController.OnRunButtonHeld += OnRunButtonHeld;
+        KeyboardInputController.OnRunButtonReleased += OnRunButtonReleased;
 
-        //PlayerStateManager.OnStateChange += StateUpdate;
-        //PlayerStateManager.OnStateChange += OnStateChange;
     }
 
     private void OnDisable()
     {
         KeyboardInputController.OnMovement -= OnMovement;
 
-        //PlayerStateManager.OnStateChange -= StateUpdate;
-        //PlayerStateManager.OnStateChange -= OnStateChange;
     }
 
     //This could be converted to StateUpdate once we get to that stage.
     private void Update()
     {
+
         //Only if we're on the overworld state.
         //if (PlayerStateManager.GetCurrentState != )
         //    return;
 
         UpdateSpeed();
-        UpdateAnimation();
-    }
-    private void OnStateChange(PlayerBaseState state)
-    {
-
+        //UpdateAnimation();
     }
 
     private void OnMovement(Vector2 move)
     {
         FlipPlayer(move);
 
-        Vector2 movement = move * MoveSpeed * Time.deltaTime;
+        Vector2 movement = move.normalized * MoveSpeed * Time.deltaTime;
         transform.Translate(movement);
     }
-    
-    private void UpdateAnimation()
-    {
-        if(!CharacterIsMoving())
-        {
-            animationtype = AnimationType.ANIM_Idle;
-        }
-        else if(CharacterIsMoving() && RunButtonHeld())
-        {
-            animationtype = AnimationType.ANIM_Running;
-        }
 
-        else
-        {
-            animationtype = AnimationType.ANIM_Walking;
-        }
+    //private void UpdateAnimation()
+    //{
+    //    if(!CharacterIsMoving())
+    //    {
+    //        animationtype = AnimationType.ANIM_Idle;
+    //    }
+    //    else if(CharacterIsMoving() && PlayerRunning)
+    //    {
+    //        animationtype = AnimationType.ANIM_Running;
+    //    }
 
-        //RUNNING TO BE ADDED.
+    //    else
+    //    {
+    //        animationtype = AnimationType.ANIM_Walking;
+    //    }
 
-        int animationNum = (int)animationtype;
-        controller.SetInteger("PlayerState", animationNum);
-    }
+    //    //RUNNING TO BE ADDED.
+
+    //    int animationNum = (int)animationtype;
+    //    controller.SetInteger("PlayerState", animationNum);
+    //}
 
     
 
@@ -105,9 +107,24 @@ public class PlayerMovement : MonoBehaviour
     {
         MoveSpeed = WALKSPEED;
 
-        if(RunButtonHeld())
+        if(PlayerRunning)
         {
             MoveSpeed = RUNSPEED;
         }
+    }
+
+    private void OnRunButtonHeld()
+    {
+        PlayerRunning = true;
+    }
+
+    private void OnRunButtonReleased()
+    {
+        PlayerRunning = false;
+    }
+
+    private void OnStateChange(PlayerBaseState state)
+    {
+
     }
 }

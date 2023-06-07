@@ -10,14 +10,12 @@ public class PlayerStateManager : MonoBehaviour
 
     //private void OnEnable()
     //{
-    //    EventManager.ChangeOverworldState += ChangeOverworldState;
-    //    EventManager.ChangeBattleState += ChangeBattleState;
+    //
     //}
 
     //private void OnDisable()
     //{
-    //    EventManager.ChangeOverworldState -= ChangeOverworldState;
-    //    EventManager.ChangeBattleState -= ChangeBattleState;
+    //
     //}
 
     /// <summary>
@@ -50,16 +48,4 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerBaseState GetCurrentState() {
         return currentState;
     }
-
-    //public void ChangeBattleState()
-    //{
-    //    currentState = battleState;
-    //    currentState.EnterState(this);
-    //}
-
-    //public void ChangeOverworldState()
-    //{
-    //    currentState = overworldState;
-    //    currentState.EnterState(this);
-    //}
 }

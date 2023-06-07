@@ -10,8 +10,6 @@ public class Entity
     }
     
     public Stats stats;
-
-
     public Inventory inventory;
 
     
