@@ -8,7 +8,7 @@ public class Entity
         //stats = entityhealth;
         inventory = entityinventory;
     }
-    
+
     public Stats stats;
     public Inventory inventory;
 

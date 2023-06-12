@@ -14,6 +14,8 @@ public enum AnimationType
 
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerInput PlayerAction;
+
     public AnimationType animationtype;
 
     const float WALKSPEED = 4f;
@@ -36,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        KeyboardInputController.OnMovement += OnMovement;
         KeyboardInputController.OnRunButtonHeld += OnRunButtonHeld;
         KeyboardInputController.OnRunButtonReleased += OnRunButtonReleased;
 
@@ -44,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        KeyboardInputController.OnMovement -= OnMovement;
 
     }
 
@@ -56,41 +56,49 @@ public class PlayerMovement : MonoBehaviour
         //if (PlayerStateManager.GetCurrentState != )
         //    return;
 
+        
         UpdateSpeed();
-        //UpdateAnimation();
+        UpdateAnimation();
+        OnMovement();
     }
 
-    private void OnMovement(Vector2 move)
+    private void OnMovement()
     {
+        Vector2 move = PlayerAction.actions["Movement"].ReadValue<Vector2>();
         FlipPlayer(move);
 
         Vector2 movement = move.normalized * MoveSpeed * Time.deltaTime;
         transform.Translate(movement);
+
+        if(move.x != 0 || move.y != 0)
+        {
+            UpdateAnimation(true);
+        }
     }
 
-    //private void UpdateAnimation()
-    //{
-    //    if(!CharacterIsMoving())
-    //    {
-    //        animationtype = AnimationType.ANIM_Idle;
-    //    }
-    //    else if(CharacterIsMoving() && PlayerRunning)
-    //    {
-    //        animationtype = AnimationType.ANIM_Running;
-    //    }
+    private void UpdateAnimation(bool CharacterIsMoving = false)
+    {
+        if (!CharacterIsMoving)
+        {
+            animationtype = AnimationType.ANIM_Idle;
+        }
+        else if (CharacterIsMoving && PlayerRunning)
+        {
+            animationtype = AnimationType.ANIM_Running;
+        }
 
-    //    else
-    //    {
-    //        animationtype = AnimationType.ANIM_Walking;
-    //    }
+        else
+        {
+            animationtype = AnimationType.ANIM_Walking;
+        }
 
-    //    //RUNNING TO BE ADDED.
+        //RUNNING TO BE ADDED.
 
-    //    int animationNum = (int)animationtype;
-    //    controller.SetInteger("PlayerState", animationNum);
-    //}
+        int animationNum = (int)animationtype;
+        controller.SetInteger("PlayerState", animationNum);
+    }
 
-    
+
 
     private void FlipPlayer(Vector2 flip)
     {
@@ -100,7 +108,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        spriterenderer.flipX = true;        
+        if(flip.x <= -0.01)
+        {
+            spriterenderer.flipX = true;
+            return;
+        }
     }
 
     private void UpdateSpeed()

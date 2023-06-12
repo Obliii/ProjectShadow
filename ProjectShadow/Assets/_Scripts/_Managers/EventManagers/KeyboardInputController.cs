@@ -26,7 +26,7 @@ public class KeyboardInputController : MonoBehaviour
     {
 
         //Movement
-        OnMovement?.Invoke(PlayerAction.actions["Movement"].ReadValue<Vector2>());
+        //OnMovement?.Invoke(PlayerAction.actions["Movement"].ReadValue<Vector2>());
 
         //Action Buttons Pressed.
         if(PlayerAction.actions["Button1"].WasPressedThisFrame())
