@@ -3,27 +3,28 @@ using System.Collections.Generic;
 
 public class Entity
 {
-    public Entity(Inventory entityinventory = null)
-    {
+    //public Entity(Inventory entityinventory = null)
+    //{
         //stats = entityhealth;
-        inventory = entityinventory;
-    }
+        //inventory = entityinventory;
+    //}
 
     public Stats stats;
-    public Inventory inventory;
+    //public Inventory inventory;
 
     
 }
 
 public class Stats
 {
-    public Stats(int Health = 100, int PhysicalArmor = 2, int MagicArmor = 1, int BasePhysicalDamage = 5, int BaseMagicDamage = 0)
+    public Stats(int Health = 100, int PhysicalArmor = 2, int MagicArmor = 1, int BasePhysicalDamage = 5, int BaseMagicDamage = 0, float Speed = 5f)
     {
         maxHealth = Health;
         physicalarmor = PhysicalArmor;
         magicarmor = MagicArmor;
         basephysicaldamage = BasePhysicalDamage;
         basemagicdamage = BaseMagicDamage;
+        speed = Speed;
     }
 
     //These are base values, armor items will be able to change this.
@@ -35,6 +36,8 @@ public class Stats
 
     private int basephysicaldamage;
     private int basemagicdamage;
+
+    private float speed;
 
 
     public void ApplyDamage(int DamageAmount, int ArmorAmount)
@@ -97,5 +100,9 @@ public class Stats
     public int GetBaseMagicDamage()
     {
         return basemagicdamage;
+    }
+    public float GetSpeed()
+    {
+        return speed;
     }
 }

@@ -24,6 +24,7 @@ public class EntityStateManager : MonoBehaviour
 {
     //Basic Necessities.
     private Vector2 SpawnPoint;
+    private Quaternion SpawnRotation;
 
     public Entity entity;
 
@@ -53,11 +54,20 @@ public class EntityStateManager : MonoBehaviour
     private void Start()
     {
         SpawnPoint = transform.position;
+        SpawnRotation = transform.rotation;
+
         CurrentState = StationaryState;
+        CurrentState.EnterState();
     }
     private void Update()
     {
         CurrentState.UpdateState();
+    }
+
+    public void SwitchState(BaseEntityState state)
+    {
+        CurrentState = state;
+        CurrentState.EnterState();
     }
 
     void DetectPlayer()
