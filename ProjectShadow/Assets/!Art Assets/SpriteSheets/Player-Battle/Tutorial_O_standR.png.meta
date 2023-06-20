@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 481731e692f63d846bacb000743247cb
+guid: f054f68443177ec4c996d4d1c03b9301
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_b_walkR_0
+      name: Tutorial_O_standR_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c1b19b5016584a499f148774cc7c3df
-      internalID: 887992804
+      spriteID: 32d52851bd5c5f547aab96d4adfbc719
+      internalID: -868829547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_1
+      name: Tutorial_O_standR_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 42
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e99c4423846da3844b9559fe10ca6fb5
-      internalID: 1446277979
+      spriteID: 7d53ef78595da2446b530319b3c7f225
+      internalID: -143173333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_2
+      name: Tutorial_O_standR_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 84
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0f7f25da2c537a469bb9e08cb7e88a7
-      internalID: 422546490
+      spriteID: 100ebc7e00c6a4340866a1346f339f6d
+      internalID: -456731805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_3
+      name: Tutorial_O_standR_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 126
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3561ee8be2b64ee46bbf4c310d84fb8a
-      internalID: 1225363719
+      spriteID: 97dc5338f88bdea4f823c4975997d3d3
+      internalID: 676456156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_4
+      name: Tutorial_O_standR_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 168
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e36f08e44dd3c42a735f5bb85ab4b8
-      internalID: 1610390165
+      spriteID: c9847af75d799ea43ac8814d90d535fc
+      internalID: -587100153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_5
+      name: Tutorial_O_standR_5
       rect:
         serializedVersion: 2
-        x: 200
+        x: 210
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a0697a55e083e743b2f65b95041314d
-      internalID: -88969164
+      spriteID: 03a959908179b5f4094b144ac016fa0d
+      internalID: 44262388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_6
+      name: Tutorial_O_standR_6
       rect:
         serializedVersion: 2
-        x: 240
+        x: 252
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +245,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da5fc585784965446870cef13696ffb3
-      internalID: -1405910445
+      spriteID: 9f2ddf6d7f1d4214ca4b42cb4e243fed
+      internalID: -101357142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_b_walkR_7
+      name: Tutorial_O_standR_7
       rect:
         serializedVersion: 2
-        x: 280
+        x: 294
         y: 0
-        width: 40
-        height: 40
+        width: 42
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,8 +266,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2ed8fcf17d8fcd4aa671920ac11c549
-      internalID: 1551731978
+      spriteID: b6ea7a89af3cac4418edec452492388a
+      internalID: -1035948142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_O_standR_8
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b1176a686ab8af4c93fd606f2907db8
+      internalID: -1048662795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_O_standR_9
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46790d326758e3344a1dd3f3288c74e0
+      internalID: -2068104124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_O_standR_10
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5df37e5969c7e44a9347cf17045243
+      internalID: -477764020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_O_standR_11
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 0
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7eb6072ac30f724f9efbf108618af34
+      internalID: 1141566368
       vertices: []
       indices: 
       edges: []
@@ -283,14 +367,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MC_b_walkR_0: 887992804
-      MC_b_walkR_1: 1446277979
-      MC_b_walkR_2: 422546490
-      MC_b_walkR_3: 1225363719
-      MC_b_walkR_4: 1610390165
-      MC_b_walkR_5: -88969164
-      MC_b_walkR_6: -1405910445
-      MC_b_walkR_7: 1551731978
+      Tutorial_O_standR_0: -868829547
+      Tutorial_O_standR_1: -143173333
+      Tutorial_O_standR_10: -477764020
+      Tutorial_O_standR_11: 1141566368
+      Tutorial_O_standR_2: -456731805
+      Tutorial_O_standR_3: 676456156
+      Tutorial_O_standR_4: -587100153
+      Tutorial_O_standR_5: 44262388
+      Tutorial_O_standR_6: -101357142
+      Tutorial_O_standR_7: -1035948142
+      Tutorial_O_standR_8: -1048662795
+      Tutorial_O_standR_9: -2068104124
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

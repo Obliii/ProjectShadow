@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c585e8ed7e92ba4ebb23884c7560fdd
+guid: f469a4fa655f2904cae58ef99276155a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_C_standR_0
+      name: Tutorial_C_standR_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 091c8a1b17101544bae7a52719d50272
-      internalID: 603337823
+      spriteID: 9eda6c3f3dbb2314aab9e5f73648aacf
+      internalID: 306604663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_1
+      name: Tutorial_C_standR_1
       rect:
         serializedVersion: 2
         x: 40
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a291d975e8cd2e448bd6cc1a289b264
-      internalID: -1816834289
+      spriteID: 635ba080996c1ca48a7e05cd49b80108
+      internalID: 906661795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_2
+      name: Tutorial_C_standR_2
       rect:
         serializedVersion: 2
         x: 80
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3b0148804689104c9f778500335cc43
-      internalID: 1410775679
+      spriteID: 5f902c902a49bd84db96e3102dad5778
+      internalID: -2028064176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_3
+      name: Tutorial_C_standR_3
       rect:
         serializedVersion: 2
         x: 120
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03da56164cd8097429a6bad45cf4ef98
-      internalID: 351890171
+      spriteID: 8955e30400583f84bbc7bf47b0f78d41
+      internalID: -72074996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_4
+      name: Tutorial_C_standR_4
       rect:
         serializedVersion: 2
         x: 160
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc70e7f3847d3540ba5d6c5e08f3e4c
-      internalID: 381927271
+      spriteID: 5a35e3dc62255d54089fab3af3472c74
+      internalID: 908612320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_5
+      name: Tutorial_C_standR_5
       rect:
         serializedVersion: 2
         x: 200
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2538d07477b1346866d6d79b9d7200
-      internalID: -2142333183
+      spriteID: 9e71abca68dc56d408db1d5c246ed22d
+      internalID: 291487369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_6
+      name: Tutorial_C_standR_6
       rect:
         serializedVersion: 2
         x: 240
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6789f27d94dd4f349851f59309fffaa9
-      internalID: -1695899958
+      spriteID: fdcc7b7079dde80438dcfffca7b3206e
+      internalID: -49024911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_7
+      name: Tutorial_C_standR_7
       rect:
         serializedVersion: 2
         x: 280
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fad3aefeea29f884d8852d099a1afe0d
-      internalID: -292583491
+      spriteID: 1ea0c9de2cbe7c74491632dea31ff2a4
+      internalID: 1983906225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC_C_standR_8
+      name: Tutorial_C_standR_8
       rect:
         serializedVersion: 2
         x: 320
@@ -287,8 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb21f5b5ef79dfd4a96aca924b3a4fe3
-      internalID: 1004997091
+      spriteID: 8652c0d902cb6fd4b9892315fef3221d
+      internalID: 191768024
       vertices: []
       indices: 
       edges: []
@@ -304,15 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MC_C_standR_0: 603337823
-      MC_C_standR_1: -1816834289
-      MC_C_standR_2: 1410775679
-      MC_C_standR_3: 351890171
-      MC_C_standR_4: 381927271
-      MC_C_standR_5: -2142333183
-      MC_C_standR_6: -1695899958
-      MC_C_standR_7: -292583491
-      MC_C_standR_8: 1004997091
+      Tutorial_C_standR_0: 306604663
+      Tutorial_C_standR_1: 906661795
+      Tutorial_C_standR_2: -2028064176
+      Tutorial_C_standR_3: -72074996
+      Tutorial_C_standR_4: 908612320
+      Tutorial_C_standR_5: 291487369
+      Tutorial_C_standR_6: -49024911
+      Tutorial_C_standR_7: 1983906225
+      Tutorial_C_standR_8: 191768024
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
