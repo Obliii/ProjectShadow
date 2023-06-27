@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float MoveSpeed = WALKSPEED;
 
-    Stats stats = null;
     Entity entity = null;
 
     public SpriteRenderer spriterenderer;

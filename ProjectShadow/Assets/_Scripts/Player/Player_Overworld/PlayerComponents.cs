@@ -12,7 +12,6 @@ public class PlayerComponents
         ANIM_Running,
     };
 
-    Stats stats = null;
     Entity entity = null;
 
 
