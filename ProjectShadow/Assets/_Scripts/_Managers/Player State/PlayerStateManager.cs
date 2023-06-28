@@ -1,51 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    public PlayerBaseState currentState;
-    public PlayerOverworldState overworldState = new PlayerOverworldState();
-    public PlayerBattleState battleState = new PlayerBattleState();
+    //State Variables
+    PlayerBaseState _currentState;
+    PlayerStateFactory _states;
 
-    //private void OnEnable()
-    //{
-    //
-    //}
+    public PlayerInput _playerInput;
+    public SpriteRenderer _spriteRenderer;
+    public BoxCollider2D _playerCollider;
+    public Animator _playerAnimator;
 
-    //private void OnDisable()
-    //{
-    //
-    //}
+    bool _isRunPressed;
 
-    /// <summary>
-    ///  Could also have this run with events,
-    ///  The UpdateState function could launch an event
-    ///  that would tell all others scripts that rely on it to update.
-    ///  Could use a "OnStateUpdate" in my own scripts that wait for it.
-    ///  Instead of having to goto this script and check to see what state we're on.
-    /// </summary>
+    public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; }}
+    public bool isRunPressed { get { return _isRunPressed; }}
+    public PlayerInput playerInput { get { return _playerInput; }}
+    public SpriteRenderer spriteRenderer { get { return _spriteRenderer; }}
+    public BoxCollider2D playerCollider { get { return _playerCollider; }}
+    public Animator playerAnimator { get { return _playerAnimator; }}
 
-    void Start()
+    void Awake()
     {
-        //Sets Starting State. Starts state when state change occures.
-        currentState = overworldState;
-        currentState.EnterState(this);
+        _states = new PlayerStateFactory(this);
+        _playerCollider = GetComponent<BoxCollider2D>();
+        _currentState = _states.Overworld();
+        _currentState.EnterState();
     }
 
     void Update()
     {
-        //Update Active State
-        currentState.UpdateState(this);
-    }
-
-    public void SwitchState(PlayerBaseState state) {
-        //Changes state when called.
-        currentState = state;
-        state.EnterState(this);
-    }
-
-    public PlayerBaseState GetCurrentState() {
-        return currentState;
+        _currentState.UpdateStates();
+        _isRunPressed = _playerInput.actions["Run"].IsPressed();
     }
 }

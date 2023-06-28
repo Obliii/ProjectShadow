@@ -1,11 +1,44 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-
 public abstract class PlayerBaseState
 {
-    public static PlayerInput playerAction;
+    protected PlayerStateManager _ctx;
+    protected PlayerStateFactory _factory;
+    protected PlayerBaseState _currentSubState;
+    protected PlayerBaseState _currentSuperState;
 
-    public abstract void EnterState(PlayerStateManager player);
+    public PlayerBaseState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory){
+        _ctx = currentContext;
+        _factory = playerStateFactory;
+    }
 
-    public abstract void UpdateState(PlayerStateManager player);
+    public abstract void EnterState();
+    
+    public abstract void UpdateState();
+
+    public abstract void ExitState();
+
+    public abstract void CheckSwitchState();
+
+    public abstract void InitializeSubState(); 
+
+    public void UpdateStates(){
+        UpdateState();
+        if (_currentSubState != null){
+            _currentSubState.UpdateState();
+        }
+    }
+
+    protected void SwitchState(PlayerBaseState newState){
+        ExitState();
+        newState.EnterState();
+        _ctx.CurrentState = newState;
+    }
+
+    protected void SetSuperState(PlayerBaseState newSuperState){
+        _currentSuperState = newSuperState;
+    }
+
+    protected void SetSubState(PlayerBaseState newSubState){
+        _currentSubState = newSubState;
+        newSubState.SetSuperState(this);
+    }
 }

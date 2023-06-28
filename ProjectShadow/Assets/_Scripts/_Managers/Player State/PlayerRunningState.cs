@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBattleState : PlayerBaseState
+public class PlayerRunningState : PlayerBaseState
 {
-    public PlayerBattleState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory)
+    public PlayerRunningState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory)
     : base (currentContext, playerStateFactory){}
     
     public override void EnterState(){
-        Debug.Log("Entered Player Battle State");
+        Debug.Log("Entered Player Running State");
     }
     
     public override void UpdateState(){
@@ -18,9 +18,7 @@ public class PlayerBattleState : PlayerBaseState
     public override void ExitState(){}
 
     public override void CheckSwitchState(){
-        if(_ctx.playerInput.actions["Accept"].IsPressed()){
-            SwitchState(_factory.Overworld());
-        }
+        
     }
 
     public override void InitializeSubState(){}

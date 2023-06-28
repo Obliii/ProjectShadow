@@ -37,7 +37,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Button1"",
+                    ""name"": ""Accept"",
                     ""type"": ""Button"",
                     ""id"": ""34ab5f10-6ed3-4f3e-82c2-378b14472e06"",
                     ""expectedControlType"": ""Button"",
@@ -46,7 +46,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Button2"",
+                    ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""b4f8ab1f-d793-4f53-8fdb-15db666ceb80"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RunButton"",
+                    ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""c30f0bb2-8217-45f6-9204-31cee576b13e"",
                     ""expectedControlType"": ""Button"",
@@ -193,7 +193,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Button1"",
+                    ""action"": ""Accept"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -204,7 +204,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Button1"",
+                    ""action"": ""Accept"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -215,7 +215,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Button2"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -226,7 +226,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Button2"",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -237,7 +237,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RunButton"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +248,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RunButton"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -272,9 +272,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Button1 = m_Player.FindAction("Button1", throwIfNotFound: true);
-        m_Player_Button2 = m_Player.FindAction("Button2", throwIfNotFound: true);
-        m_Player_RunButton = m_Player.FindAction("RunButton", throwIfNotFound: true);
+        m_Player_Accept = m_Player.FindAction("Accept", throwIfNotFound: true);
+        m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
+        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,17 +337,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Button1;
-    private readonly InputAction m_Player_Button2;
-    private readonly InputAction m_Player_RunButton;
+    private readonly InputAction m_Player_Accept;
+    private readonly InputAction m_Player_Cancel;
+    private readonly InputAction m_Player_Run;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
         public PlayerActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Button1 => m_Wrapper.m_Player_Button1;
-        public InputAction @Button2 => m_Wrapper.m_Player_Button2;
-        public InputAction @RunButton => m_Wrapper.m_Player_RunButton;
+        public InputAction @Accept => m_Wrapper.m_Player_Accept;
+        public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
+        public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,15 +360,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Button1.started += instance.OnButton1;
-            @Button1.performed += instance.OnButton1;
-            @Button1.canceled += instance.OnButton1;
-            @Button2.started += instance.OnButton2;
-            @Button2.performed += instance.OnButton2;
-            @Button2.canceled += instance.OnButton2;
-            @RunButton.started += instance.OnRunButton;
-            @RunButton.performed += instance.OnRunButton;
-            @RunButton.canceled += instance.OnRunButton;
+            @Accept.started += instance.OnAccept;
+            @Accept.performed += instance.OnAccept;
+            @Accept.canceled += instance.OnAccept;
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -376,15 +376,15 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Button1.started -= instance.OnButton1;
-            @Button1.performed -= instance.OnButton1;
-            @Button1.canceled -= instance.OnButton1;
-            @Button2.started -= instance.OnButton2;
-            @Button2.performed -= instance.OnButton2;
-            @Button2.canceled -= instance.OnButton2;
-            @RunButton.started -= instance.OnRunButton;
-            @RunButton.performed -= instance.OnRunButton;
-            @RunButton.canceled -= instance.OnRunButton;
+            @Accept.started -= instance.OnAccept;
+            @Accept.performed -= instance.OnAccept;
+            @Accept.canceled -= instance.OnAccept;
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -414,8 +414,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnButton1(InputAction.CallbackContext context);
-        void OnButton2(InputAction.CallbackContext context);
-        void OnRunButton(InputAction.CallbackContext context);
+        void OnAccept(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
 }
