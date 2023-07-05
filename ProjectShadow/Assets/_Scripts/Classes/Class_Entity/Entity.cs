@@ -9,6 +9,9 @@ public class Entity : MonoBehaviour
         LoadEntityData();
     }
 
+    //Getting a list of InventoryItems to get the ActiveEffects from.
+    public List<StatusEffect> Effects = new List<StatusEffect>();
+
     //public Inventory inventory;
     public EntityData CharacterData;
 
@@ -27,10 +30,16 @@ public class Entity : MonoBehaviour
     private int _basePhysicaldamage;
     private int _baseMagicdamage;
 
+    private int _tempPhysicalArmor;
+    private int _tempMagicArmor;
+    private int _tempPhysicalDamage;
+    private int _tempHealth;
+    private float _tempSpeed;
+
     private float _speed;
 
 
-    //GETTERS AND SETTERS
+    //GETTERS AND SETTERS. Default Values
     public string Name { get { return _name; } set { _name = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
     public CharacterPortrait CharacterIcon { get { return _portraiticon; } set { _portraiticon = value; } }
@@ -41,6 +50,16 @@ public class Entity : MonoBehaviour
     public int BasePhysicalDamage { get { return _basePhysicaldamage; } set { _basePhysicaldamage = value; } }
     public int BaseMagicDamage { get { return _baseMagicdamage; } set { _baseMagicdamage = value; } }
     public float BaseSpeed { get { return _speed; } set { _speed = value; } }
+    //Getters and setters. Temporary Values for items to give. 
+    public int TempPhysicalArmor { get { return _tempPhysicalArmor; } set { _tempPhysicalArmor = value; } }
+    public int TempMagicArmor { get { return _tempMagicArmor; } set { _tempMagicArmor = value;} }
+    public int TempPhysicalDamage { get { return _tempPhysicalDamage; } set { _tempPhysicalDamage = value; } }
+    public int TempHealth { get { return _tempHealth; } set { _tempHealth = value; } }
+    public float TempSpeed { get { return _tempSpeed; } set { _tempSpeed = value; } }
+
+    public int TotalPhysicalArmor { get { return _physicalArmor + _tempPhysicalArmor; } }
+    public int TotalMagicArmor { get { return _magicArmor + _tempMagicArmor;} }
+
 
     public void LoadEntityData()
     {
@@ -56,21 +75,61 @@ public class Entity : MonoBehaviour
         BaseSpeed = CharacterData.speed;
     }
     
-    public void ApplyDamage(int DamageAmount, int ArmorAmount)
+    public void ApplyPhysicalDamage(int DamageAmount, bool AccountForArmor = true, bool IsIgnoringTempHealth = false)
     {
         int CurrentDamage = DamageAmount;
 
-        CurrentDamage = CurrentDamage - ArmorAmount;
+        if(AccountForArmor)
+        CurrentDamage = CurrentDamage - TotalPhysicalArmor;
+
+        if (TempHealth > 0 && IsIgnoringTempHealth)
+        {
+            while (CurrentDamage != 0 && TempHealth != 0)
+            {
+                TempHealth -= 1;
+                CurrentDamage -= 1;
+            }
+        }
 
         if (CurrentDamage <= 0)
         {
             CurrentDamage = 1; //Damage will always be one despite the armor.
         }
+
+        CurrentHealth -= CurrentDamage;
+    }
+
+    public void ApplyMagicDamage(int DamageAmount, bool AccountForArmor = true, bool IsIgnoringTempHealth = false)
+    {
+        int CurrentDamage = DamageAmount;
+
+        if (AccountForArmor)
+        {
+            CurrentDamage = CurrentDamage - TotalMagicArmor;
+        }
+
+        if (TempHealth > 0 && IsIgnoringTempHealth)
+        {
+            while(CurrentDamage != 0 && TempHealth != 0) 
+            {
+                TempHealth -= 1;
+                CurrentDamage -= 1;
+            }
+        }
+
+        if (CurrentDamage <= 0)
+                CurrentDamage = 1; //Damage will always be one despite the armor.
+
+        CurrentHealth -= CurrentDamage;
     }
 
     public void ApplyHealing(int HealingAmount)
     {
-        CurrentHealth += HealingAmount;
+        if(CurrentHealth < MaxHealth)
+        {
+            CurrentHealth += HealingAmount;
+        }
+
 
         if (CurrentHealth >= MaxHealth)
         {
@@ -78,14 +137,57 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public void UpdateEffects()
+    {
+        for(int x = 0; x < Effects.Count; ++x)
+        {
+            Effects[x].UpdateEffect();
+
+            if (Effects[x].IsEnded) {
+                Effects.RemoveAt(x);
+            }
+
+        }
+    }
+
+    public void ClearAllEffects()
+    {
+        Effects.Clear();
+    }
+
+    public void ApplyActiveEffect(StatusEffect effect)
+    {
+        Effects.Add(effect);
+
+        effect.ApplyEffect();
+    }
+
     public void TargetDead()
     {
 
     }
 
+    public void CheckOverHealthThreshold()
+    {
+        if(CurrentHealth > MaxHealth + TempHealth)
+        {
+            CurrentHealth = MaxHealth + TempHealth;
+        }
+    }
+
     public bool IsDead()
     {
         if (CurrentHealth <= 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool PlayerInCombat()
+    {
+        if(GameManager.IsInCombat)
         {
             return true;
         }

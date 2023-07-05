@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.TextCore.Text;
 
 public enum GameState
 {
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     // Statics
     public static bool IsPaused = false;
+    public static bool IsInCombat = false;
 
     public static GameState GameState;
 
@@ -39,19 +40,17 @@ public class GameManager : MonoBehaviour
     public static void TogglePause()
     {
 
+        //Pause menu.
         IsPaused = !IsPaused;
 
-        //Event ran to make sure all functions know the game is paused.
-        //Or we could just do Time.timeScale = 0;
-        if(IsPaused)
+        if (IsPaused)
         {
             Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 1; 
+            Time.timeScale = 1;
         }
-
     }
 
     public static void ChangeGameState(GameState state)
