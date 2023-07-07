@@ -15,6 +15,9 @@ public class Entity : MonoBehaviour
     //public Inventory inventory;
     public EntityData CharacterData;
 
+    //Checks if the Target is dead.
+    private bool _isDead;
+
     //Base Entity Variables
     private string _name;
     private Animator _animator;
@@ -32,14 +35,18 @@ public class Entity : MonoBehaviour
 
     private int _tempPhysicalArmor;
     private int _tempMagicArmor;
+
     private int _tempPhysicalDamage;
+    private int _tempMagicDamage;
+
     private int _tempHealth;
     private float _tempSpeed;
 
     private float _speed;
 
 
-    //GETTERS AND SETTERS. Default Values
+    //GETTERS AND SETTERS. Base Values
+    public bool IsDead { get { return _isDead; } set { _isDead = value; } }
     public string Name { get { return _name; } set { _name = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
     public CharacterPortrait CharacterIcon { get { return _portraiticon; } set { _portraiticon = value; } }
@@ -50,15 +57,21 @@ public class Entity : MonoBehaviour
     public int BasePhysicalDamage { get { return _basePhysicaldamage; } set { _basePhysicaldamage = value; } }
     public int BaseMagicDamage { get { return _baseMagicdamage; } set { _baseMagicdamage = value; } }
     public float BaseSpeed { get { return _speed; } set { _speed = value; } }
-    //Getters and setters. Temporary Values for items to give. 
+    
+    // Getters and setters. Temporary Values for items to give. 
     public int TempPhysicalArmor { get { return _tempPhysicalArmor; } set { _tempPhysicalArmor = value; } }
     public int TempMagicArmor { get { return _tempMagicArmor; } set { _tempMagicArmor = value;} }
     public int TempPhysicalDamage { get { return _tempPhysicalDamage; } set { _tempPhysicalDamage = value; } }
+    public int TempMagicDamage { get { return _tempMagicDamage; } set { _tempMagicDamage = value; } }
     public int TempHealth { get { return _tempHealth; } set { _tempHealth = value; } }
     public float TempSpeed { get { return _tempSpeed; } set { _tempSpeed = value; } }
 
+    // Temporary and Base values added together.
+    public int TotalPhysicalDamage { get { return _basePhysicaldamage + _tempPhysicalDamage; } }
+    public int TotalMagicDamage { get { return _baseMagicdamage + _tempMagicDamage; } }
     public int TotalPhysicalArmor { get { return _physicalArmor + _tempPhysicalArmor; } }
     public int TotalMagicArmor { get { return _magicArmor + _tempMagicArmor;} }
+    public float TotalSpeed { get { return _speed + _tempSpeed; } }
 
 
     public void LoadEntityData()
@@ -97,6 +110,9 @@ public class Entity : MonoBehaviour
         }
 
         CurrentHealth -= CurrentDamage;
+
+        //After dealing the damage. Check if the Entity is dead.
+        CheckIsDead();
     }
 
     public void ApplyMagicDamage(int DamageAmount, bool AccountForArmor = true, bool IsIgnoringTempHealth = false)
@@ -108,7 +124,7 @@ public class Entity : MonoBehaviour
             CurrentDamage = CurrentDamage - TotalMagicArmor;
         }
 
-        if (TempHealth > 0 && IsIgnoringTempHealth)
+        if (TempHealth != 0 && IsIgnoringTempHealth)
         {
             while(CurrentDamage != 0 && TempHealth != 0) 
             {
@@ -121,10 +137,18 @@ public class Entity : MonoBehaviour
                 CurrentDamage = 1; //Damage will always be one despite the armor.
 
         CurrentHealth -= CurrentDamage;
+
+        //After dealing the damage. Check if the Entity is dead.
+        CheckIsDead();
     }
 
     public void ApplyHealing(int HealingAmount)
     {
+        if(HealingAmount < 0)
+        {
+            ApplyMagicDamage(HealingAmount, false);
+        }
+
         if(CurrentHealth < MaxHealth)
         {
             CurrentHealth += HealingAmount;
@@ -134,6 +158,18 @@ public class Entity : MonoBehaviour
         if (CurrentHealth >= MaxHealth)
         {
             CurrentHealth = MaxHealth;
+        }
+    }
+
+    public void CheckIsDead()
+    {
+        if (CurrentHealth <= 0)
+        {
+            IsDead = true;
+        }
+        else
+        {
+            IsDead = false;
         }
     }
 
@@ -155,16 +191,13 @@ public class Entity : MonoBehaviour
         Effects.Clear();
     }
 
-    public void ApplyActiveEffect(StatusEffect effect)
+    public void ApplyActiveEffect(StatusEffectData effect)
     {
-        Effects.Add(effect);
+        StatusEffect newStatus = new StatusEffect(effect);
 
-        effect.ApplyEffect();
-    }
+        Effects.Add(newStatus);
 
-    public void TargetDead()
-    {
-
+        newStatus.ApplyEffect();
     }
 
     public void CheckOverHealthThreshold()
@@ -173,16 +206,6 @@ public class Entity : MonoBehaviour
         {
             CurrentHealth = MaxHealth + TempHealth;
         }
-    }
-
-    public bool IsDead()
-    {
-        if (CurrentHealth <= 0)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public bool PlayerInCombat()

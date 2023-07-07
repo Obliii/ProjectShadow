@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
@@ -23,7 +24,7 @@ public class InventoryItem
     public string description;
 }
 
-[CreateAssetMenu(menuName = "New Generic Item")]
+[CreateAssetMenu(menuName = "Items/New Generic Item")]
 public abstract class InventoryItemData : ScriptableObject
 {
     protected Entity _entity;
@@ -38,7 +39,7 @@ public abstract class InventoryItemData : ScriptableObject
     public abstract void UseItem();
 }
 
-[CreateAssetMenu(menuName = "New Health Item")]
+[CreateAssetMenu(menuName = "Items/New Health Item")]
 public class HealthItem : InventoryItemData
 {
     public int health;
@@ -58,22 +59,26 @@ public class DamagingItem : InventoryItemData
     }
 }
 
-[CreateAssetMenu(menuName = "New Consumable Item")]
+[CreateAssetMenu(menuName = "Items/New Consumable Item")]
 public class ConsumableItem : InventoryItemData
 {
-    public int physicalArmorAmount;
-    public int magicArmorAmount;
-    public int physicalDamage;
-    public int tempHealth;
+    [Header("Immediate Effects.")]
+    public int HealthChange;
 
-    public float duration;
+    [Header("Status Effect")]
+    public StatusEffectData ItemStatusData;
     public override void UseItem()
     {
-        _entity.ApplyActiveEffect(new TemporaryStat(duration, physicalArmorAmount, magicArmorAmount, physicalDamage, tempHealth));
+        _entity.ApplyHealing(HealthChange);
+
+        if(ItemStatusData != null)
+        {
+            _entity.ApplyActiveEffect(ItemStatusData);
+        }
     }   
 }
 
-[CreateAssetMenu(menuName = "New Equipment")]
+[CreateAssetMenu(menuName = "Items/New Equipment")]
 public class EquipmentItem : InventoryItemData
 {
     public override void UseItem()
